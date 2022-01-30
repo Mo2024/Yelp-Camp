@@ -1,0 +1,25 @@
+{
+  "name": "Yelp-Camp",
+  "version": "1.0.0",
+  "description": "Project based off the web development course bought from Udemy with Colt Steele",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mo2024/Yelp-Camp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mo2024/Yelp-Camp/issues"
+  },
+  "homepage": "https://github.com/Mo2024/Yelp-Camp#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.8"
+  }
+}
