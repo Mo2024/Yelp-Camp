@@ -6,6 +6,7 @@ const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const catchAsync = require('./utils/catchAsync')
 const ExpressError = require('./utils/ExpressError')
+const { campgroundSchema } = require('./schemas')
 
 mongoose.connect('mongodb://localhost:27017/yelpCamp')
     .then(() => {
@@ -15,7 +16,6 @@ mongoose.connect('mongodb://localhost:27017/yelpCamp')
         throw err;
     })
 
-
 const db = mongoose.connection;
 const app = express();
 
@@ -24,6 +24,19 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.engine('ejs', ejsMate)
+
+const validateCampground = (req, res, next) => {
+
+    const { error } = campgroundSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',')
+        throw new ExpressError(msg, 400)
+    }
+    else {
+        next();
+    }
+
+}
 
 app.get('/', (req, res) => {
     res.render("home")
@@ -38,12 +51,14 @@ app.get('/campgrounds/new', (req, res) => {
     res.render('campgrounds/new')
 });
 
-app.post('/campgrounds', catchAsync(async (req, res) => {
-    if (!req.body.campground) throw new ExpressError('Invalid campground data', 400);
+app.post('/campgrounds', validateCampground, catchAsync(async (req, res) => {
+    // if (!req.body.campground) throw new ExpressError('Invalid campground data', 400);
+
     const campground = new Campground(req.body.campground);
     await campground.save();
     res.redirect(`/campgrounds/${campground._id}`)
 }));
+
 app.get('/campgrounds/:id', catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id)
     res.render("campgrounds/show", { campground })
@@ -53,7 +68,7 @@ app.get('/campgrounds/:id/edit', catchAsync(async (req, res) => {
     res.render('campgrounds/edit', { campground });
 }));
 
-app.put('/campgrounds/:id', catchAsync(async (req, res) => {
+app.put('/campgrounds/:id', validateCampground, catchAsync(async (req, res) => {
     const { id } = req.params;
     const campground = await Campground.findByIdAndUpdate(id, { ...req.body.campground })
     res.redirect(`/campgrounds/${campground._id}`)
