@@ -8,6 +8,9 @@ const catchAsync = require('./utils/catchAsync')
 const ExpressError = require('./utils/ExpressError')
 const session = require('express-session')
 const flash = require('connect-flash')
+const passport = require('passport')
+const LocalStrategy = require('passport-local')
+const User = require('./models/user')
 
 mongoose.connect('mongodb://localhost:27017/yelpCamp')
     .then(() => {
@@ -41,16 +44,25 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session())
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser()) //How to store user in session
+passport.deserializeUser(User.deserializeUser()) //How to get user out of session
+
+
 app.use((req, res, next) => {
+    console.log(req.session)
+    res.locals.currentUser = req.user;
     res.locals.msg = req.flash('success');
     res.locals.error = req.flash('error');
     next();
 })
 
-
-
 app.use('/campgrounds', require('./routes/campgrounds'))
 app.use('/campgrounds/:id/reviews', require('./routes/reviews'))
+app.use('/', require('./routes/auth'))
 
 app.get('/', (req, res) => {
     res.render("home")
