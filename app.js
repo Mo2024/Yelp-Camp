@@ -53,7 +53,6 @@ passport.deserializeUser(User.deserializeUser()) //How to get user out of sessio
 
 
 app.use((req, res, next) => {
-    console.log(req.session)
     res.locals.currentUser = req.user;
     res.locals.msg = req.flash('success');
     res.locals.error = req.flash('error');
