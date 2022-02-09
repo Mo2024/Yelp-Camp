@@ -12,8 +12,11 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const User = require('./models/user')
 const sanitize = require('express-mongo-sanitize');
-const helmet = require('helmet')
+const helmet = require('helmet');
+const MongoStore = require('connect-mongo');
 require('dotenv').config();
+const MongoDBStore = require("connect-mongo");
+
 // if (process.env.NODE_ENV !== "production") {
 //     require('dotenv').config();
 // }
@@ -39,9 +42,15 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(sanitize())
 
+const store = new MongoDBStore({
+    mongoUrl: dbUrl,
+    secret: process.env.SESSION_SEC,
+    touchAfter: 24 * 60 * 60
+})
 const sessionConfig = {
+    store,
     name: 'session',
-    secret: 'thisshouldbeabettersecret!',
+    secret: process.env.SESSION_SEC,
     resave: false,
     saveUninitialized: true,
     cookie: {
