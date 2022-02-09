@@ -108,6 +108,7 @@ passport.deserializeUser(User.deserializeUser()) //How to get user out of sessio
 
 
 app.use((req, res, next) => {
+    res.setHeader('Cross-Origin-Resource-Policy', 'same-site');
     res.locals.currentUser = req.user;
     res.locals.msg = req.flash('success');
     res.locals.error = req.flash('error');

@@ -26,12 +26,12 @@ const seedDB = async () => {
             title: `${sample(descriptors)} ${sample(places)}`,
             images: [
                 {
-                    url: 'https://res.cloudinary.com/yelp-camp2024/image/upload/v1644335338/YelpCamp/eygqgqjhhn9chbexghnc.png',
-                    filename: 'YelpCamp/zoozpclbcsirbnhxfstn',
+                    url: 'https://res.cloudinary.com/yelp-camp2024/image/upload/v1644409978/YelpCamp/xkmwlv5abxeu2ejfc6pj.png',
+                    filename: 'YelpCamp/xkmwlv5abxeu2ejfc6pj',
                 },
                 {
-                    url: 'https://res.cloudinary.com/yelp-camp2024/image/upload/v1644335338/YelpCamp/nheclgedakngwmmcnglr.png',
-                    filename: 'YelpCamp/kk40mknmpkbvtdbjmsq5',
+                    url: 'https://res.cloudinary.com/yelp-camp2024/image/upload/v1644409979/YelpCamp/ca8k1zvhemsoayz8u2gk.png',
+                    filename: 'YelpCamp/ca8k1zvhemsoayz8u2gk',
                 }
             ],
             geometry: {
