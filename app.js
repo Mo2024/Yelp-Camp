@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -11,8 +14,11 @@ const flash = require('connect-flash')
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const User = require('./models/user')
+// const dotenv = require('dotenv');
+// dotenv.config({ path: './.env' })
+const dbUrl = process.env.DB_URL
 
-mongoose.connect('mongodb://localhost:27017/yelpCamp')
+mongoose.connect(dbUrl)
     .then(() => {
         console.log("Connected to database...")
     })
