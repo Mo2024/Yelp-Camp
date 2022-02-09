@@ -74,14 +74,14 @@ app.get('/', (req, res) => {
 });
 
 
-app.all('*', (req, res, next) => {
-    next(new ExpressError('Page not Found', 404))
-})
-app.use((err, req, res, next) => {
-    const { statusCode = 500 } = err;
-    if (!err.message) err.message = 'Oh No, Something Went Wrong!'
-    res.status(statusCode).render('error', { err })
-})
+// app.all('*', (req, res, next) => {
+//     next(new ExpressError('Page not Found', 404))
+// })
+// app.use((err, req, res, next) => {
+//     const { statusCode = 500 } = err;
+//     if (!err.message) err.message = 'Oh No, Something Went Wrong!'
+//     res.status(statusCode).render('error', { err })
+// })
 app.listen(3000, () => {
     console.log("Listening to port 3000")
 });

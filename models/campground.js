@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const Review = require('./review')
 const Schema = mongoose.Schema;
+//This is for when you try to stringify a virtual variable to pass it to regular js
+const opts = { toJSON: { virtuals: true } };
+
 
 const ImageSchema = new Schema({
     url: String,
@@ -10,6 +13,7 @@ const ImageSchema = new Schema({
 ImageSchema.virtual('thumbnail').get(function () {
     return this.url.replace('/upload', '/upload/w_200')
 })
+
 const CampgroundSchema = new mongoose.Schema({
     title: String,
     price: Number,
@@ -38,6 +42,11 @@ const CampgroundSchema = new mongoose.Schema({
             ref: 'Review'
         }
     ]
+}, opts)
+
+CampgroundSchema.virtual('properties.popUpMarkup').get(function () {
+    return `
+    <strong><a href="/campgrounds/${this._id}">${this.title}</a><strong>`
 })
 
 CampgroundSchema.post('findOneAndDelete', async function (campground) {
