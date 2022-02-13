@@ -1,0 +1,59 @@
+<!-- <div class="parent-loader">
+
+
+    <div class="loader-wrapper">
+
+        <span class="loader ">
+            <span class="loader-inner"></span>
+        </span>
+    </div>
+    <h3 class="-wrapper mt-5">
+        Thank you for your patience!
+        <br>
+        The page will load shortly :)
+
+    </h3>
+</div> -->
+<div class="parent-wrapper">
+    <div class="loader-wrapper">
+        <div class="loader mt-3">
+            <div class="loader-inner"></div>
+        </div>
+
+    </div>
+
+    <h3 class="h3">
+        Thank you for your patience!
+        <br>
+        The page will load shortly :)
+    </h3>
+</div>
+<script>
+    $(window).on("load", function () {
+        $(".parent-wrapper").fadeOut("slow");
+        // $('body').css('overflow', 'visible');
+        $('body').css('overflow', 'hidden');
+
+
+    });
+
+    $('body').css('overflow', 'visible');
+
+    // $(window).ready(function () {
+    //     $('body').css('overflow', 'visible');
+
+    // });
+    // $(window).load(function () {
+    //     $(body, html).css('overflow', 'visible');
+    //     // $(".loader-wrapper").fadeOut("slow");
+
+    // });
+    // $(window).load(function () {
+    //     $(body, html).css('overflow', 'visible');
+
+    // });
+
+    // $(document).ready(function () {
+    //     $(body, html).css('overflow', 'auto');
+    // });
+</script>

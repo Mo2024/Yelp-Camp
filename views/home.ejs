@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YelpCamp</title>
+    <script src="/js/jquery.min.js"></script>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/loading.css">
+
 </head>
 
 <body class="d-flex text-center text-white bg-dark">
@@ -15,7 +18,7 @@
             <div>
                 <h3 class="float-md-left mb-0">YelpCamp</h3>
                 <nav class="nav nav-masthead justify-content-center float-md-right">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
                     <a class="nav-link" href="/campgrounds">Campgrounds</a>
                     <% if(!currentUser) { %>
                     <a class="nav-link" href="/login">Login</a>
@@ -40,6 +43,8 @@
 
 
     </div>
+
+    <%- include('./partials/loading') %>
 
     <script src="/js/bootstrap.min.js"></script>
 </body>

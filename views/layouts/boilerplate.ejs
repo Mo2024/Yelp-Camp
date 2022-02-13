@@ -12,6 +12,10 @@
     <!-- <script src='/js/mapbox-gl.js.map'></script> -->
     <link href='/css/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/loading.css">
+    <script src="/js/jquery.min.js"></script>
+
+
 
 
 </head>
@@ -24,9 +28,38 @@
     <main class="container mt-5">
         <%- include('../partials/flash') %>
         <%- body %>
+
     </main>
 
     <%- include('../partials/footer') %>
+
+    <%- include('../partials/loading') %>
+
+    <!-- <div class="loader-wrapper">
+        <h3 class="mb-5">
+            Thank you for your patience!
+            <br>
+            The page will load shortly :)
+
+        </h3>
+        <br>
+
+        <span class="loader mt-3">
+            <span class="loader-inner"></span>
+        </span>
+    </div> -->
+
+    <!-- <div class="loader-wrapper">
+        <h3 class="mb-5">
+            Thank you for your patience!
+            <br>
+            The page will load shortly :)
+            <br>
+            <span class="loader mt-3">
+                <span class="loader-inner"></span>
+            </span>
+        </h3>
+    </div> -->
 
 
     <!-- <script src="/js/popper.min.js.map"></script> -->
