@@ -1,29 +1,28 @@
 <% layout('/layouts/boilerplate') %>
 <link rel="stylesheet" href="/css/stars.css">
 
-<div class="row">
-    <div class="col-6">
-        <div id="carousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <%campground.images.forEach((img,i)=>{ %>
-                <div class="carousel-item <%= i === 0 ? 'active':''%> ">
-                    <img src="<%= img.url %>" crossorigin="anonymous" class="d-block w-100" alt="">
+<section class="container row mx-auto">
+    <div class="col-lg-6">
+        <div class="card mb-5">
+            <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <%campground.images.forEach((img,i)=>{ %>
+                    <div class="carousel-item <%= i === 0 ? 'active':''%> ">
+                        <img src="<%= img.url %>" crossorigin="anonymous" class="d-block w-100" alt="">
+                    </div>
+                    <% }) %>
                 </div>
-                <% }) %>
+                <% if(campground.images.length>1){ %>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <% } %>
             </div>
-            <% if(campground.images.length>1){ %>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-            <% } %>
-        </div>
-        <div class="card mb-3">
-
             <div class="card-body">
                 <h5 class="card-title"><%= campground.title %></h5>
                 <p class="card-text"><%= campground.description %>.</p>
@@ -47,7 +46,7 @@
         </div>
 
     </div>
-    <div class="col-6">
+    <div class="col-lg-6">
         <div id='regular-map'></div>
         <h3>Leave a review</h3>
         <form action="/campgrounds/<%= campground._id %>/reviews" method="POST" class="mb-3 validated-form" novalidate>
@@ -91,7 +90,7 @@
 
         <% } %>
     </div>
-</div>
+</section>
 <p id="yy" style="display:none"><%= JSON.stringify(campground) %></p>
 
 <script>
