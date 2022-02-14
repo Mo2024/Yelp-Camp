@@ -34,3 +34,9 @@
         $('body').css('overflow', 'visible');
     });
 </script>
+<script>
+    const loader = document.querySelector('.parent-wrapper');
+    document.body.onbeforeunload = (event) => {
+        loader.style.display = "flex";
+    };
+</script>
